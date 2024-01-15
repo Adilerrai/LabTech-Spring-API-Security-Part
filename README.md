@@ -1,1 +1,1 @@
-# LabTech-Spring-API
+# Brief06_tech_lab
