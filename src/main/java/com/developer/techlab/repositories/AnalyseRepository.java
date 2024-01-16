@@ -11,5 +11,4 @@ import java.util.List;
 
 @Repository
 public interface AnalyseRepository extends JpaRepository<Analyse , Long> {
-    List<Analyse> findByDateFinAfterAndEchantillonStatut(LocalDate currentDate, StatutEchantillon statut);
 }

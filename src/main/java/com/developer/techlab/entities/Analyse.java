@@ -28,7 +28,7 @@ public class Analyse {
     @Column(name = "date_fin")
     private LocalDate date_fin;
 
-    @OneToMany(mappedBy = "analyse", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "analyse", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Teste> testes = new ArrayList<>();
 
     @ManyToOne
@@ -39,5 +39,8 @@ public class Analyse {
 
     @ManyToOne
     private Patient patient;
+
+    @ManyToOne
+    private AnalyseDetails analyseDetails;
 
 }

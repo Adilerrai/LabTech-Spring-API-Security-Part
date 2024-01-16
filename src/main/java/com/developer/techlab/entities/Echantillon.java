@@ -28,10 +28,7 @@ public class Echantillon {
     @ManyToOne
     private Patient patient;
 
-    @ManyToOne
-    private Analyse analyse;
-
-    @OneToMany(mappedBy = "echantillon")
-    private List<Analyse> analyses;
+    @OneToMany(mappedBy = "echantillon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Analyse> analyses = new ArrayList<>();
 
 }

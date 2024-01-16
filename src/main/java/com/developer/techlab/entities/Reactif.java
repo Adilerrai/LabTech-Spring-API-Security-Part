@@ -30,7 +30,7 @@ public class Reactif {
     @Column(name = "fournisseur")
     private String fournisseur;
 
-    @OneToMany(mappedBy = "reactif")
+    @OneToMany(mappedBy = "reactif", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 
 }

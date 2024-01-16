@@ -25,7 +25,10 @@ public class AnalyseDetails {
     @Column(name = "libelle")
     private String libelle;
 
-    @OneToMany(mappedBy = "analyseDetails")
+    @OneToMany(mappedBy = "analyseDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteDetails> testeDetails = new ArrayList<>();
+
+    @OneToMany(mappedBy = "analyseDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Analyse> analyses = new ArrayList<>();
 
 }

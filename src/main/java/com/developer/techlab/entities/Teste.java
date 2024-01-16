@@ -37,9 +37,12 @@ public class Teste {
     @ManyToOne
     private Analyse analyse;
 
-    @OneToMany(mappedBy = "teste")
+    @OneToMany(mappedBy = "teste", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     private Resultat resultat;
+
+    @ManyToOne
+    private TesteDetails testeDetails;
 }

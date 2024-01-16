@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -31,4 +33,7 @@ public class TesteDetails {
 
     @ManyToOne
     private AnalyseDetails analyseDetails;
+
+    @OneToMany(mappedBy = "testeDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Teste> testes = new ArrayList<>();
 }

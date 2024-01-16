@@ -31,7 +31,7 @@ public class UserLab {
     @Column(name = "role")
     private Role role;
 
-    @OneToMany(mappedBy = "userLab", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userLab", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Analyse> analyses = new ArrayList<>();
 
 }
