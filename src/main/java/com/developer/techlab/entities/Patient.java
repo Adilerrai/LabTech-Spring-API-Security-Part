@@ -31,7 +31,10 @@ public class Patient {
     @Column(name = "sexe")
     private Sexe sexe;
 
-    @OneToMany(mappedBy = "echantillon", fetch = FetchType.LAZY)
-    List<Analyse> analyses = new ArrayList<>();
+    @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY)
+    private List<Echantillon> echantillons = new ArrayList<>();
+
+    @OneToMany(mappedBy = "patient")
+    private List<Analyse> analyses = new ArrayList<>();
 
 }

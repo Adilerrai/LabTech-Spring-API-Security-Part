@@ -37,4 +37,7 @@ public class Analyse {
     @ManyToOne
     private UserLab userLab;
 
+    @ManyToOne
+    private Patient patient;
+
 }

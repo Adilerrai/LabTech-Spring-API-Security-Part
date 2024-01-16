@@ -40,6 +40,6 @@ public class Teste {
     @OneToMany(mappedBy = "teste")
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Resultat resultat;
 }

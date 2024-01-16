@@ -25,7 +25,7 @@ public class Resultat {
     @Column(name = "resultat")
     private ResultatTeste resultat;
 
-    @OneToOne
+    @OneToOne(mappedBy = "resultat")
     private Teste teste;
 
 }
