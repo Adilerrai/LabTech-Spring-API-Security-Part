@@ -1,5 +1,6 @@
 package com.developer.techlab.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,7 +28,8 @@ public class Analyse {
 
     @Column(name = "date_fin")
     private LocalDate date_fin;
-
+    @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "analyse", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Teste> testes = new ArrayList<>();
 

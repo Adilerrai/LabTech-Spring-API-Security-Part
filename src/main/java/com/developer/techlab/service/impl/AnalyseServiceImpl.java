@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,5 +55,14 @@ public class AnalyseServiceImpl implements AnalyseService {
             return modelMapper.map(analyseRepository.save(existingAnalyse), AnalyseDTO.class);
         }
         return null;
+    }
+    @Override
+    public List<AnalyseDTO> getOngoingAnalyses() {
+        LocalDate currentDate = LocalDate.now();
+        List<Analyse> ongoingAnalyses = analyseRepository.findOngoingAnalyses(currentDate);
+
+        return ongoingAnalyses.stream()
+                .map(analyse -> modelMapper.map(analyse, AnalyseDTO.class))
+                .collect(Collectors.toList());
     }
 }

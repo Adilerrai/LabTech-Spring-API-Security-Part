@@ -15,6 +15,4 @@ public class AnalyseDetailsDTO {
     private String libelle;
     private List<TesteDetailsDTO> testeDetailsDTOs;
     private List<AnalyseDTO> analyseDTOs;
-
-
 }

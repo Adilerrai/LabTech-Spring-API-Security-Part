@@ -2,6 +2,7 @@ package com.developer.techlab.entities;
 
 
 import com.developer.techlab.entities.enums.Sexe;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,10 +31,12 @@ public class Patient {
 
     @Column(name = "sexe")
     private Sexe sexe;
-
+    @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Echantillon> echantillons = new ArrayList<>();
-
+    @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Analyse> analyses = new ArrayList<>();
 
