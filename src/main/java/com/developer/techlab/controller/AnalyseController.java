@@ -46,4 +46,9 @@ public class AnalyseController {
         AnalyseDTO updatedAnalyse = analyseService.updateAnalyse(analyseId, updatedAnalyseDTO);
         return (updatedAnalyse != null) ? ResponseEntity.ok(updatedAnalyse) : ResponseEntity.notFound().build();
     }
+    @GetMapping("/ongoing")
+    public ResponseEntity<List<AnalyseDTO>> getOngoingAnalyses() {
+        List<AnalyseDTO> ongoingAnalyses = analyseService.getOngoingAnalyses();
+        return ResponseEntity.ok(ongoingAnalyses);
+    }
 }

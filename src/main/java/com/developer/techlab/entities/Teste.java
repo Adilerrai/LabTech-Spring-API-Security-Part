@@ -1,6 +1,7 @@
 package com.developer.techlab.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +37,8 @@ public class Teste {
 
     @ManyToOne
     private Analyse analyse;
-
+    @ToString.Exclude
+    @JsonIgnore
     @OneToMany(mappedBy = "teste", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 

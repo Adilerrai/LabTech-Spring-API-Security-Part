@@ -10,4 +10,6 @@ public interface AnalyseService {
     List<AnalyseDTO> getAllAnalyses();
     void deleteAnalyse(long analyseId);
     AnalyseDTO updateAnalyse(long analyseId, AnalyseDTO updatedAnalyseDTO);
+    List<AnalyseDTO> getOngoingAnalyses();
+
 }
