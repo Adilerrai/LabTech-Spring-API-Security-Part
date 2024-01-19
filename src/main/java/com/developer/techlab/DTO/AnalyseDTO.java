@@ -25,4 +25,5 @@ public class AnalyseDTO {
     private UserLabDTO userLab;
     private PatientDTO patient;
     private AnalyseDetailsDTO analyseDetails;
+    private ReactifDTO reactif;
 }

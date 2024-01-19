@@ -12,4 +12,5 @@ public interface ReactifService {
     List<ReactifDTO> getAllReactifs();
     void deleteReactif(long reactifId);
     ReactifDTO updateReactif(long reactifId, ReactifDTO updatedReactifDTO);
+    int getReactifQuantity(long reactifId);
 }

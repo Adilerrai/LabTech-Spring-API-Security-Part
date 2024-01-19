@@ -53,4 +53,14 @@ public class ReactifServiceImpl implements ReactifService {
         }
         return null;
     }
+
+    @Override
+    public int getReactifQuantity(long reactifId) {
+        Reactif existingReactif = reactifRepository.findById(reactifId).orElse(null);
+        if (existingReactif != null) {
+            return existingReactif.getQuantite();
+        }
+        return 0;
+
+    }
 }

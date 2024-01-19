@@ -1,8 +1,11 @@
 package com.developer.techlab.controller;
 
 import com.developer.techlab.DTO.AnalyseDTO;
+import com.developer.techlab.DTO.TesteDTO;
 import com.developer.techlab.service.AnalyseService;
+import com.developer.techlab.service.ReactifService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,9 +17,17 @@ public class AnalyseController {
 
     @Autowired
     private AnalyseService analyseService;
+    @Autowired
+    private ReactifService reactifService;
 
     @PostMapping("/create")
     public ResponseEntity<AnalyseDTO> createAnalyse(@RequestBody AnalyseDTO analyseDTO) {
+        long reactifId = analyseDTO.getReactif().getId();
+        int reactifQuantity = reactifService.getReactifQuantity(reactifId);
+        if (reactifQuantity < 5) {
+            System.out.println("Low reactif quantity! Please add more reactifs.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         AnalyseDTO createdAnalyse = analyseService.saveAnalyse(analyseDTO);
         return ResponseEntity.ok(createdAnalyse);
     }
@@ -50,5 +61,11 @@ public class AnalyseController {
     public ResponseEntity<List<AnalyseDTO>> getOngoingAnalyses() {
         List<AnalyseDTO> ongoingAnalyses = analyseService.getOngoingAnalyses();
         return ResponseEntity.ok(ongoingAnalyses);
+    }
+
+    @GetMapping("/{analyseId}/test-results")
+    public ResponseEntity<List<TesteDTO>> getTestResultsForAnalyse(@PathVariable long analyseId) {
+        List<TesteDTO> getTestResultsForAnalyse = analyseService.getTestResultsForAnalyse(analyseId);
+        return ResponseEntity.ok(getTestResultsForAnalyse);
     }
 }

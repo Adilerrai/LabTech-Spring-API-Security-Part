@@ -1,6 +1,7 @@
 package com.developer.techlab.service;
 
 import com.developer.techlab.DTO.AnalyseDTO;
+import com.developer.techlab.DTO.TesteDTO;
 
 import java.util.List;
 
@@ -11,5 +12,5 @@ public interface AnalyseService {
     void deleteAnalyse(long analyseId);
     AnalyseDTO updateAnalyse(long analyseId, AnalyseDTO updatedAnalyseDTO);
     List<AnalyseDTO> getOngoingAnalyses();
-
+    List<TesteDTO> getTestResultsForAnalyse(long analyseId);
 }

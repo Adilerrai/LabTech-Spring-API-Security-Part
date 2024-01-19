@@ -1,9 +1,11 @@
 package com.developer.techlab.DTO;
 
+import com.developer.techlab.entities.enums.ResultatTeste;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.util.List;
 
 @Data
@@ -18,7 +20,7 @@ public class TesteDTO {
     private double max;
     private AnalyseDTO analyseDTO;
     private List<TesteReactifDTO> testeReactifDTOs;
-    private ResultatDTO resultatDTO;
+    private ResultatTeste resultat;
     private TesteDetailsDTO testeDetailsDTO;
 
 }

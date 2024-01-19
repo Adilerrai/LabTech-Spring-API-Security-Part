@@ -1,6 +1,7 @@
 package com.developer.techlab.entities;
 
 
+import com.developer.techlab.entities.enums.ResultatTeste;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,11 +30,8 @@ public class Teste {
     @Column(name = "valeur")
     private double valeur;
 
-    @Column(name = "min")
-    private double min;
-
-    @Column(name = "max")
-    private double max;
+    @Column(name = "resultat")
+    private ResultatTeste resultat;
 
     @ManyToOne
     private Analyse analyse;
@@ -42,8 +40,8 @@ public class Teste {
     @OneToMany(mappedBy = "teste", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Resultat resultat;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Resultat resultat;
 
     @ManyToOne
     private TesteDetails testeDetails;

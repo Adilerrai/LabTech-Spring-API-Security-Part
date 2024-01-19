@@ -1,7 +1,11 @@
 package com.developer.techlab.service.impl;
 
 import com.developer.techlab.DTO.AnalyseDTO;
+import com.developer.techlab.DTO.TesteDTO;
 import com.developer.techlab.entities.Analyse;
+import com.developer.techlab.entities.AnalyseDetails;
+import com.developer.techlab.entities.Teste;
+import com.developer.techlab.entities.TesteDetails;
 import com.developer.techlab.repositories.AnalyseRepository;
 import com.developer.techlab.service.AnalyseService;
 import org.modelmapper.ModelMapper;
@@ -21,6 +25,7 @@ public class AnalyseServiceImpl implements AnalyseService {
 
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
     public AnalyseDTO saveAnalyse(AnalyseDTO analyseDTO) {
         Analyse analyse = modelMapper.map(analyseDTO, Analyse.class);
@@ -56,6 +61,7 @@ public class AnalyseServiceImpl implements AnalyseService {
         }
         return null;
     }
+
     @Override
     public List<AnalyseDTO> getOngoingAnalyses() {
         LocalDate currentDate = LocalDate.now();
@@ -65,4 +71,22 @@ public class AnalyseServiceImpl implements AnalyseService {
                 .map(analyse -> modelMapper.map(analyse, AnalyseDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<TesteDTO> getTestResultsForAnalyse(long analyseId) {
+        Analyse analyse = analyseRepository.findById(analyseId).orElse(null);
+        return analyse.getTestes().stream()
+                .map(teste -> modelMapper.map(teste, TesteDTO.class))
+                .collect(Collectors.toList());
+    }
+
+//    public void add(Analyse analyse){
+//        AnalyseDetails analyseDetails = analyse.getAnalyseDetails();
+//        List<TesteDetails> testeDetailsList = analyseDetails.getTesteDetails();
+//        for(TesteDetails t: testeDetailsList){
+//            Teste teste = new Teste();
+//            teste.setAnalyse(analyse);
+//            teste.setTesteDetails(t);
+//        }
+//    }
 }
