@@ -4,10 +4,7 @@ import com.developer.techlab.entities.enums.Sexe;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +27,7 @@ public class Patient {
 
     @Column(name = "email")
     @NotNull(message = "Email cannot be null")
+    @NotEmpty(message = "Email cannot be empty")
     @Email(message = "Email should be valid")
     private String email;
 
