@@ -25,6 +25,9 @@ public class PatientServiceImpl implements PatientService {
     @Autowired
     EchantillonRepository echantillonRepository;
 
+    public PatientServiceImpl(PatientRepository patientRepository) {
+    }
+
     @Override
     public PatientDTO savePatient(PatientDTO patientDTO) {
         Patient patient = modelMapper.map(patientDTO, Patient.class);

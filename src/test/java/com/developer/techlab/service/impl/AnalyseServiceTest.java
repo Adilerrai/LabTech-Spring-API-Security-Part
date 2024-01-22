@@ -1,4 +1,4 @@
-package com.developer.techlab.service;
+package com.developer.techlab.service.impl;
 
 import com.developer.techlab.DTO.AnalyseDTO;
 import com.developer.techlab.DTO.TesteDTO;
@@ -7,6 +7,7 @@ import com.developer.techlab.entities.Teste;
 import com.developer.techlab.repositories.AnalyseRepository;
 import com.developer.techlab.repositories.EchantillonRepository;
 import com.developer.techlab.repositories.TesteRepository;
+import com.developer.techlab.service.AnalyseService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
