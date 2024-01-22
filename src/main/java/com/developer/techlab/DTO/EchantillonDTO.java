@@ -22,14 +22,14 @@ public class EchantillonDTO {
 
 
     private long id;
-
     private LocalDate date_prev;
-
     private StatutEchantillon statut;
-
-//    private Patient patient;
     @ToString.Exclude
-
+    private Patient patient;
+    @ToString.Exclude
     private List<Analyse> analyses;
 
+    public EchantillonDTO(long id) {
+        this.id = id;
+    }
 }

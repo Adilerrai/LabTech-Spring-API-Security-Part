@@ -1,13 +1,17 @@
 package com.developer.techlab.service.impl;
 
+import com.developer.techlab.DTO.EchantillonDTO;
 import com.developer.techlab.DTO.PatientDTO;
+import com.developer.techlab.entities.Echantillon;
 import com.developer.techlab.entities.Patient;
+import com.developer.techlab.repositories.EchantillonRepository;
 import com.developer.techlab.repositories.PatientRepository;
 import com.developer.techlab.service.PatientService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,14 +20,21 @@ public class PatientServiceImpl implements PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
-
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    EchantillonRepository echantillonRepository;
 
     @Override
     public PatientDTO savePatient(PatientDTO patientDTO) {
         Patient patient = modelMapper.map(patientDTO, Patient.class);
-        return modelMapper.map(patientRepository.save(patient), PatientDTO.class);
+        List<Echantillon> echantillons = patient.getEchantillons();
+        Patient savedPatient = patientRepository.save(patient);
+        for(Echantillon echantillon : echantillons){
+            echantillon.setPatient(savedPatient);
+            echantillonRepository.save(echantillon);
+        }
+        return modelMapper.map(savedPatient, PatientDTO.class);
     }
 
     @Override

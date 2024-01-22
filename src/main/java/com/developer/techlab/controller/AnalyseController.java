@@ -1,6 +1,7 @@
 package com.developer.techlab.controller;
 
 import com.developer.techlab.DTO.AnalyseDTO;
+import com.developer.techlab.DTO.AnalyseDetailsDTO;
 import com.developer.techlab.DTO.TesteDTO;
 import com.developer.techlab.service.AnalyseService;
 import com.developer.techlab.service.ReactifService;
@@ -68,4 +69,16 @@ public class AnalyseController {
         List<TesteDTO> getTestResultsForAnalyse = analyseService.getTestResultsForAnalyse(analyseId);
         return ResponseEntity.ok(getTestResultsForAnalyse);
     }
+
+//    @PostMapping("/createAnalyse")
+//    public ResponseEntity<AnalyseDTO> createAnalyse(@RequestBody AnalyseDetailsDTO analyseDetailsDTO) {
+//        AnalyseDTO createdAnalyse = analyseService.create(analyseDetailsDTO);
+//        if (createdAnalyse != null) {
+//            return ResponseEntity.ok(createdAnalyse);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//    }
+
+
 }

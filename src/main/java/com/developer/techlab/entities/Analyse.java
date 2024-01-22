@@ -33,7 +33,8 @@ public class Analyse {
     @OneToMany(mappedBy = "analyse", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Teste> testes = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+//    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Echantillon echantillon;
 
     @ManyToOne

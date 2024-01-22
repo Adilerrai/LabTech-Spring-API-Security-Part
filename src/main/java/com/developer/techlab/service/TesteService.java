@@ -1,6 +1,9 @@
 package com.developer.techlab.service;
 
+import com.developer.techlab.DTO.TesteDTO;
 import com.developer.techlab.entities.Teste;
+
+import java.util.List;
 
 public interface TesteService {
     Teste saveTeste(Teste teste);
@@ -8,4 +11,5 @@ public interface TesteService {
     void deleteTeste(long testeId);
     Teste updateTeste(long testeId, Teste updatedTeste);
 
+    List<Teste> saveTestes(List<TesteDTO> testesDTO);
 }

@@ -1,18 +1,18 @@
 package com.developer.techlab.service.impl;
 
-import com.developer.techlab.DTO.AnalyseDTO;
-import com.developer.techlab.DTO.TesteDTO;
-import com.developer.techlab.entities.Analyse;
-import com.developer.techlab.entities.AnalyseDetails;
-import com.developer.techlab.entities.Teste;
-import com.developer.techlab.entities.TesteDetails;
-import com.developer.techlab.repositories.AnalyseRepository;
+import com.developer.techlab.DTO.*;
+import com.developer.techlab.entities.*;
+import com.developer.techlab.repositories.*;
 import com.developer.techlab.service.AnalyseService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,16 +20,32 @@ import java.util.stream.Collectors;
 @Service
 public class AnalyseServiceImpl implements AnalyseService {
 
+    @PersistenceContext
+    private EntityManager entityManager;
     @Autowired
     private AnalyseRepository analyseRepository;
-
+    @Autowired
+    TesteRepository testeRepository;
+    @Autowired
+    EchantillonRepository echantillonRepository;
     @Autowired
     private ModelMapper modelMapper;
-
     @Override
     public AnalyseDTO saveAnalyse(AnalyseDTO analyseDTO) {
         Analyse analyse = modelMapper.map(analyseDTO, Analyse.class);
-        return modelMapper.map(analyseRepository.save(analyse), AnalyseDTO.class);
+        Echantillon echantillon = echantillonRepository.findById(analyseDTO.getEchantillon().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Echantillon not found with id: " + analyseDTO.getEchantillon().getId()));
+        if (!entityManager.contains(echantillon)) {
+            echantillon = entityManager.merge(echantillon);
+        }
+        analyse.setEchantillon(echantillon);
+        Analyse savedAnalyse = analyseRepository.save(analyse);
+        List<Teste> testeList = savedAnalyse.getTestes();
+        for (Teste teste : testeList) {
+            teste.setAnalyse(savedAnalyse);
+            testeRepository.save(teste);
+        }
+        return modelMapper.map(savedAnalyse, AnalyseDTO.class);
     }
 
     @Override

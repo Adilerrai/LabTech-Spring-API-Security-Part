@@ -15,20 +15,23 @@ public class ReactifDTO {
 
 
         private long id;
-
-
         private String libelle;
-
-
         private int quantite;
-
-
         private LocalDate date_exp;
-
         private String fournisseur;
-
         private List<TesteReactif> testeReactifs;
 
-    }
+        public ReactifDTO(long id, String libelle, int quantite, LocalDate date_exp, String fournisseur) {
+                this.id = id;
+                this.libelle = libelle;
+                this.quantite = quantite;
+                this.date_exp = date_exp;
+                this.fournisseur = fournisseur;
+        }
+
+        public ReactifDTO(long id) {
+                this.id = id;
+        }
+}
 
 
