@@ -36,4 +36,15 @@ public class UserLab {
     @OneToMany(mappedBy = "userLab", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Analyse> analyses = new ArrayList<>();
 
+    public UserLab(long id, String nom, String email, String mot_passe, Role role) {
+        this.id = id;
+        this.nom = nom;
+        this.email = email;
+        this.mot_passe = mot_passe;
+        this.role = role;
+    }
+
+    public UserLab(int id) {
+        this.id = id;
+    }
 }

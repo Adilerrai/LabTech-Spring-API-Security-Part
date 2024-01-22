@@ -4,6 +4,7 @@ import com.developer.techlab.DTO.UserLabDTO;
 import com.developer.techlab.entities.UserLab;
 import com.developer.techlab.repositories.UserLabRepository;
 import com.developer.techlab.service.UserLabService;
+import lombok.AllArgsConstructor;
 import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserLabServiceImpl implements UserLabService {
 
-    @Autowired
+
     UserLabRepository userLabRepository;
-    @Autowired
+
     ModelMapper modelMapper;
 
     @Override
