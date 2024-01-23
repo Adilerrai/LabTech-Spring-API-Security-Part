@@ -4,28 +4,21 @@ import com.developer.techlab.DTO.*;
 import com.developer.techlab.entities.*;
 import com.developer.techlab.service.AnalyseService;
 import com.developer.techlab.service.ReactifService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -53,8 +46,8 @@ public class AnalyseControllerTest {
         AnalyseDTO inputAnalyseDTO = new AnalyseDTO(5L, "Analyse Libelle");
         mockMvc = standaloneSetup(analyseController).build();
         mockMvc.perform(post("/analyses/create")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(inputAnalyseDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(inputAnalyseDTO)))
                 .andExpect(status().isOk())
                 .andDo(print());
         verify(analyseService, times(1)).saveAnalyse(any(AnalyseDTO.class));
@@ -66,7 +59,7 @@ public class AnalyseControllerTest {
         when(analyseService.getAnalyseById(5L)).thenReturn(expectedAnalyseDTO);
         mockMvc = standaloneSetup(analyseController).build();
         mockMvc.perform(get("/analyses/{analyseId}", 5L)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
         verify(analyseService, times(1)).getAnalyseById(5L);
@@ -80,7 +73,7 @@ public class AnalyseControllerTest {
         when(analyseService.getAllAnalyses()).thenReturn(expectedAnalyses);
         mockMvc = standaloneSetup(analyseController).build();
         mockMvc.perform(get("/analyses/all")
-                 .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
@@ -93,7 +86,7 @@ public class AnalyseControllerTest {
 
         mockMvc = standaloneSetup(analyseController).build();
         mockMvc.perform(delete("/analyses/delete/{analyseId}", analyseId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -109,8 +102,8 @@ public class AnalyseControllerTest {
         when(analyseService.updateAnalyse(eq(updatedAnalyseDTO.getId()), any(AnalyseDTO.class))).thenReturn(updatedAnalyseDTO);
         mockMvc = standaloneSetup(analyseController).build();
         mockMvc.perform(put("/analyses/update/{analyseId}", updatedAnalyseDTO.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(updatedAnalyseDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(updatedAnalyseDTO)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());

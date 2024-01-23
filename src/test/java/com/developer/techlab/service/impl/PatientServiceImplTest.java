@@ -51,11 +51,9 @@ class PatientServiceImplTest {
 
     @Test
     void savePatient() {
-        // Arrange
         PatientDTO patientDTO = new PatientDTO();
         patientDTO.setId(1L);
         patientDTO.setNom("adil");
-        // Assume that the modelMapper.map() method will return a Patient object
         Patient patient = new Patient();
         patient.setId(1L);
         patient.setNom("adil");
