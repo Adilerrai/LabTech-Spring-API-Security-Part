@@ -1,10 +1,7 @@
 package com.developer.techlab.DTO;
 
 import com.developer.techlab.entities.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -47,5 +44,10 @@ public class AnalyseDTO {
         this.userLab = userLab;
         this.patient = patient;
         this.reactif = reactif;
+    }
+
+    public AnalyseDTO(long id, String libelle) {
+        this.id = id;
+        this.libelle = libelle;
     }
 }

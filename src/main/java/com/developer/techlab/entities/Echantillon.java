@@ -33,13 +33,13 @@ public class Echantillon {
     @OneToMany(mappedBy = "echantillon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Analyse> analyses = new ArrayList<>();
 
-    public Echantillon(long id, LocalDate date_prev, StatutEchantillon statut) {
+    public Echantillon(long id, StatutEchantillon statut) {
         this.id = id;
-        this.date_prev = date_prev;
         this.statut = statut;
     }
 
     public Echantillon(long id) {
         this.id = id;
     }
+
 }

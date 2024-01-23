@@ -38,4 +38,10 @@ public class Reactif {
     public Reactif(long id) {
         this.id = id;
     }
+
+    public Reactif(long id, int quantite) {
+        this.id = id;
+        this.quantite = quantite;
+    }
+
 }

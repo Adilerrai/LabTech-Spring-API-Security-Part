@@ -51,4 +51,11 @@ public class Teste {
 
     @ManyToOne
     private TesteDetails testeDetails;
+
+    public Teste(String libelle, double valeur, double min, double max) {
+        this.libelle = libelle;
+        this.valeur = valeur;
+        this.min = min;
+        this.max = max;
+    }
 }

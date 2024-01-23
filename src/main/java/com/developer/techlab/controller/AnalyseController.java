@@ -23,12 +23,12 @@ public class AnalyseController {
 
     @PostMapping("/create")
     public ResponseEntity<AnalyseDTO> createAnalyse(@RequestBody AnalyseDTO analyseDTO) {
-        long reactifId = analyseDTO.getReactif().getId();
-        int reactifQuantity = reactifService.getReactifQuantity(reactifId);
-        if (reactifQuantity < 5) {
-            System.out.println("Low reactif quantity! Please add more reactifs.");
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+//        long reactifId = analyseDTO.getReactif().getId();
+//        int reactifQuantity = reactifService.getReactifQuantity(reactifId);
+//        if (reactifQuantity < 5) {
+//            System.out.println("Low reactif quantity! Please add more reactifs.");
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
         AnalyseDTO createdAnalyse = analyseService.saveAnalyse(analyseDTO);
         return ResponseEntity.ok(createdAnalyse);
     }

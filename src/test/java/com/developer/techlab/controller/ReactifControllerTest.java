@@ -43,8 +43,7 @@ class ReactifControllerTest {
 
     @Test
     void createReactif() throws Exception {
-        ReactifDTO reactifDTO = new ReactifDTO(1L, "Reactif Libelle", 10, LocalDate.of(2025, 1, 21),
-                "Supplier ABC");
+        ReactifDTO reactifDTO = new ReactifDTO(1L, "Reactif Libelle", 10, "Supplier ABC");
         when(reactifService.saveReactif(any(ReactifDTO.class))).thenReturn(reactifDTO);
         mockMvc = standaloneSetup(reactifController).build();
         mockMvc.perform(post("/api/reactifs/create")
@@ -56,7 +55,7 @@ class ReactifControllerTest {
     @Test
     void getReactif() throws Exception {
         long reactifId = 1L;
-        ReactifDTO reactifDTO = new ReactifDTO(reactifId, "Reactif Libelle", 10, LocalDate.of(2025, 1, 21), "Supplier ABC");
+        ReactifDTO reactifDTO = new ReactifDTO(reactifId, "Reactif Libelle", 10, "Supplier ABC");
         when(reactifService.getReactifById(anyLong())).thenReturn(reactifDTO);
         mockMvc = standaloneSetup(reactifController).build();
         mockMvc.perform(get("/api/reactifs/{reactifId}", reactifId)
@@ -68,8 +67,8 @@ class ReactifControllerTest {
     @Test
     void getAllReactifs() throws Exception {
         List<ReactifDTO> reactifs = Arrays.asList(
-                new ReactifDTO(1L, "Reactif 1", 10, LocalDate.of(2025, 1, 21), "four A"),
-                new ReactifDTO(2L, "Reactif 2", 15, LocalDate.of(2025, 2, 15), "four B"));
+                new ReactifDTO(1L, "Reactif 1", 10, "four A"),
+                new ReactifDTO(2L, "Reactif 2", 15,  "four B"));
         when(reactifService.getAllReactifs()).thenReturn(reactifs);
         mockMvc = standaloneSetup(reactifController).build();
         mockMvc.perform(get("/api/reactifs/all")
@@ -91,7 +90,7 @@ class ReactifControllerTest {
 
     @Test
     void updateReactif() throws Exception {
-        ReactifDTO updatedReactifDTO = new ReactifDTO(1L, "Updated Libelle", 10, LocalDate.of(2025, 1, 1), "Updated Fournisseur");
+        ReactifDTO updatedReactifDTO = new ReactifDTO(1L, "Updated Libelle", 10, "Updated Fournisseur");
         when(reactifService.updateReactif(eq(1L), any(ReactifDTO.class))).thenReturn(updatedReactifDTO);
         mockMvc = standaloneSetup(reactifController).build();
         mockMvc.perform(put("/update/{reactifId}", 1L)
