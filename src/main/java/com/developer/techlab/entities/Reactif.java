@@ -3,6 +3,7 @@ package com.developer.techlab.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class Reactif {
     @Column(name = "libelle")
     private String libelle;
 
+    @Min(value = 5, message = "Quantity must be equal or greater than 0")
     @Column(name = "quantite")
     private int quantite;
 

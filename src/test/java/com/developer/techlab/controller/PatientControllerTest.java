@@ -56,8 +56,8 @@ class PatientControllerTest {
         when(patientService.savePatient(any(PatientDTO.class))).thenReturn(patientDTO);
 //        mockMvc = standaloneSetup(patientController).build();
         mockMvc.perform(post("/patients/create")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(patientDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(patientDTO)))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -71,7 +71,7 @@ class PatientControllerTest {
         when(patientService.getPatientById(anyLong())).thenReturn(patientDTO);
         mockMvc = standaloneSetup(patientController).build();
         mockMvc.perform(get("/patients/{patientId}", 1L)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -92,7 +92,7 @@ class PatientControllerTest {
         when(patientService.getAllPatients()).thenReturn(patients);
         mockMvc = standaloneSetup(patientController).build();
         mockMvc.perform(get("/patients/all")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
     }
@@ -102,7 +102,7 @@ class PatientControllerTest {
         doNothing().when(patientService).deletePatient(1L);
         mockMvc = standaloneSetup(patientController).build();
         mockMvc.perform(delete("/patients/delete/{patientId}", 1L)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print());
     }

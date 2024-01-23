@@ -42,8 +42,8 @@ class UserLabControllerTest {
         when(userLabService.saveUserLab(any(UserLabDTO.class))).thenReturn(userLabDTO);
         mockMvc = standaloneSetup(userLabController).build();
         mockMvc.perform(post("/userlabs/create")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(userLabDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(userLabDTO)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userLabDTO.getId()))
                 .andExpect(jsonPath("$.nom").value(userLabDTO.getNom()))
@@ -58,11 +58,11 @@ class UserLabControllerTest {
         when(userLabService.getUserLabById(userLabId)).thenReturn(userLabDTO);
         mockMvc = standaloneSetup(userLabController).build();
         mockMvc.perform(get("/userlabs/{userLabId}", userLabId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());
-                verify(userLabService, times(1)).getUserLabById(userLabId);
+        verify(userLabService, times(1)).getUserLabById(userLabId);
     }
 
     @Test
@@ -74,7 +74,7 @@ class UserLabControllerTest {
         when(userLabService.getAllUserLabs()).thenReturn(userLabDTOs);
         mockMvc = standaloneSetup(userLabController).build();
         mockMvc.perform(get("/userlabs/all")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
         verify(userLabService, times(1)).getAllUserLabs();
@@ -85,7 +85,7 @@ class UserLabControllerTest {
         long userLabId = 1L;
         mockMvc = standaloneSetup(userLabController).build();
         mockMvc.perform(delete("/userlabs/delete/{userLabId}", userLabId)
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
         verify(userLabService, times(1)).deleteUserLab(userLabId);
     }
@@ -96,8 +96,8 @@ class UserLabControllerTest {
         when(userLabService.updateUserLab(any(Long.class), any(UserLabDTO.class))).thenReturn(updatedUserLabDTO);
         mockMvc = standaloneSetup(userLabController).build();
         mockMvc.perform(put("/userlabs/update/{userLabId}", 1)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(updatedUserLabDTO)))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(updatedUserLabDTO)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(print());

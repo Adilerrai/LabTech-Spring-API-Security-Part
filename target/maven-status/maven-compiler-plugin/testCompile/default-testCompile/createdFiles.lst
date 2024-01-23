@@ -1,0 +1,10 @@
+com\developer\techlab\repositories\PatientRepositoryTest.class
+com\developer\techlab\service\impl\AnalyseServiceTest.class
+com\developer\techlab\controller\PatientControllerTest.class
+com\developer\techlab\controller\UserLabControllerTest.class
+com\developer\techlab\service\impl\ReactifServiceImplTest.class
+com\developer\techlab\TechLabApplicationTests.class
+com\developer\techlab\controller\ReactifControllerTest.class
+com\developer\techlab\controller\AnalyseControllerTest.class
+com\developer\techlab\service\impl\PatientServiceImplTest.class
+com\developer\techlab\service\impl\UserLabServiceImplTest.class

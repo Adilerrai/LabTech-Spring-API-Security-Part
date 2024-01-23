@@ -50,4 +50,14 @@ public class AnalyseDTO {
         this.id = id;
         this.libelle = libelle;
     }
+
+    public AnalyseDTO(long id, String analyseLibelle, LocalDate of, LocalDate of1, List<Teste> list, EchantillonDTO echantillonDTO, UserLabDTO userLabDTO, PatientDTO patientDTO, ReactifDTO reactifDTO) {
+
+    }
+
+    public AnalyseDTO(String analyseLibelle, LocalDate of, LocalDate of1, List<Teste> list, EchantillonDTO echantillonDTO, UserLab userLabDTO, PatientDTO patientDTO, ReactifDTO reactifDTO) {
+    }
+
+    public <T> AnalyseDTO(long l, String analyseLibelle, LocalDate of, LocalDate of1, List<T> list, EchantillonDTO echantillonDTO, UserLab userLabDTO, PatientDTO patientDTO, ReactifDTO reactifDTO) {
+    }
 }
