@@ -1,6 +1,7 @@
 package com.developer.techlab.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,13 @@ public class AnalyseDetails {
 
     @Column(name = "libelle")
     private String libelle;
-
-    @OneToMany(mappedBy = "analyseDetails")
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(mappedBy = "analyseDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteDetails> testeDetails = new ArrayList<>();
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(mappedBy = "analyseDetails", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Analyse> analyses = new ArrayList<>();
 
 }

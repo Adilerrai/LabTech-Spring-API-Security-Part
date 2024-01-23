@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.developer.techlab.controller.UserLabControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.449 s - in com.developer.techlab.controller.UserLabControllerTest

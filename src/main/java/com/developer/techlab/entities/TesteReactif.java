@@ -19,9 +19,11 @@ public class TesteReactif {
     private int quantite;
 
     @ManyToOne
+    @JoinColumn(name = "teste_id")
     private Teste teste;
 
     @ManyToOne
+    @JoinColumn(name = "reactif_id")
     private Reactif reactif;
 
 }

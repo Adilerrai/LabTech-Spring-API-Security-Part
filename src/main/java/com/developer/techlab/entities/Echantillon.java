@@ -1,6 +1,7 @@
 package com.developer.techlab.entities;
 
 import com.developer.techlab.entities.enums.StatutEchantillon;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -27,11 +28,18 @@ public class Echantillon {
 
     @ManyToOne
     private Patient patient;
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(mappedBy = "echantillon", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Analyse> analyses = new ArrayList<>();
 
-    @ManyToOne
-    private Analyse analyse;
+    public Echantillon(long id, StatutEchantillon statut) {
+        this.id = id;
+        this.statut = statut;
+    }
 
-    @OneToMany(mappedBy = "echantillon")
-    private List<Analyse> analyses;
+    public Echantillon(long id) {
+        this.id = id;
+    }
 
 }
