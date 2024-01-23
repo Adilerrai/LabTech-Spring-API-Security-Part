@@ -9,7 +9,6 @@ public interface TesteService {
     Teste saveTeste(Teste teste);
     Teste getTesteById(long testeId);
     void deleteTeste(long testeId);
-    Teste updateTeste(long testeId, Teste updatedTeste);
-
+    TesteDTO updateTeste(long testeId, TesteDTO updatedTesteDTO);
     List<Teste> saveTestes(List<TesteDTO> testesDTO);
 }

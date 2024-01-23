@@ -4,6 +4,7 @@ import com.developer.techlab.DTO.ReactifDTO;
 import com.developer.techlab.entities.Reactif;
 import com.developer.techlab.repositories.ReactifRepository;
 import com.developer.techlab.service.ReactifService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ReactifServiceImpl implements ReactifService {
 
     @Autowired
@@ -19,6 +21,7 @@ public class ReactifServiceImpl implements ReactifService {
 
     @Autowired
     private ModelMapper modelMapper;
+
     @Override
     public ReactifDTO saveReactif(ReactifDTO reactifDTO) {
         Reactif reactif = modelMapper.map(reactifDTO, Reactif.class);

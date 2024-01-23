@@ -2,6 +2,7 @@ package com.developer.techlab.service.impl;
 
 import com.developer.techlab.DTO.*;
 import com.developer.techlab.entities.*;
+import com.developer.techlab.entities.enums.ResultatTeste;
 import com.developer.techlab.repositories.*;
 import com.developer.techlab.service.AnalyseService;
 import org.modelmapper.ModelMapper;
@@ -30,6 +31,15 @@ public class AnalyseServiceImpl implements AnalyseService {
     EchantillonRepository echantillonRepository;
     @Autowired
     private ModelMapper modelMapper;
+
+    public AnalyseServiceImpl(AnalyseRepository analyseRepository, TesteRepository testeRepository, EchantillonRepository echantillonRepository, ModelMapper modelMapper, EntityManager entityManager) {
+        this.analyseRepository = analyseRepository;
+        this.testeRepository = testeRepository;
+        this.echantillonRepository = echantillonRepository;
+        this.modelMapper = modelMapper;
+        this.entityManager = entityManager;
+    }
+
     @Override
     public AnalyseDTO saveAnalyse(AnalyseDTO analyseDTO) {
         Analyse analyse = modelMapper.map(analyseDTO, Analyse.class);
@@ -72,6 +82,14 @@ public class AnalyseServiceImpl implements AnalyseService {
         Optional<Analyse> optionalAnalyse = analyseRepository.findById(analyseId);
         if (optionalAnalyse.isPresent()) {
             Analyse existingAnalyse = optionalAnalyse.get();
+            for(Teste t : existingAnalyse.getTestes()){
+                if (t.getMin()<t.getValeur() && t.getMax()>t.getValeur()){
+                    t.setResultat(ResultatTeste.NORMAL);
+                }
+                else{
+                    t.setResultat(ResultatTeste.ANORMAL);
+                }
+            }
             modelMapper.map(updatedAnalyseDTO, existingAnalyse);
             return modelMapper.map(analyseRepository.save(existingAnalyse), AnalyseDTO.class);
         }

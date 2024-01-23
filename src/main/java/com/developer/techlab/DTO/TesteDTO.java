@@ -3,6 +3,7 @@ package com.developer.techlab.DTO;
 import com.developer.techlab.entities.enums.ResultatTeste;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;

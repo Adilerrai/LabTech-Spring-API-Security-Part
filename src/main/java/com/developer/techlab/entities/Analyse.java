@@ -46,4 +46,14 @@ public class Analyse {
     @ManyToOne
     private AnalyseDetails analyseDetails;
 
+    public Analyse(long id, String libelle, LocalDate date_debut, LocalDate date_fin, List<Teste> testes, Echantillon echantillon, UserLab userLab, Patient patient) {
+        this.id = id;
+        this.libelle = libelle;
+        this.date_debut = date_debut;
+        this.date_fin = date_fin;
+        this.testes = testes;
+        this.echantillon = echantillon;
+        this.userLab = userLab;
+        this.patient = patient;
+    }
 }

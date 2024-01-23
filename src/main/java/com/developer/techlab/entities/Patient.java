@@ -49,4 +49,8 @@ public class Patient {
     @JsonIgnore
     @OneToMany(mappedBy = "patient", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Analyse> analyses = new ArrayList<>();
+
+    public Patient(long id) {
+        this.id = id;
+    }
 }

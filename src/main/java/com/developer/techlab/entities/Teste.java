@@ -30,6 +30,12 @@ public class Teste {
     @Column(name = "valeur")
     private double valeur;
 
+    @Column(name="min")
+    private double min;
+
+    @Column(name = "max")
+    private double max;
+
     @Column(name = "resultat")
     private ResultatTeste resultat;
 

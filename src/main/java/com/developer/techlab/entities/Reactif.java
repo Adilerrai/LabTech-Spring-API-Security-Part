@@ -35,4 +35,7 @@ public class Reactif {
     @OneToMany(mappedBy = "reactif", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TesteReactif> testeReactifs = new ArrayList<>();
 
+    public Reactif(long id) {
+        this.id = id;
+    }
 }

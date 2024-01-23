@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
  class TestServiceImpl implements TesteService {
@@ -31,11 +32,16 @@ import java.util.List;
 
     @Override
     public void deleteTeste(long testeId) {
-
     }
 
     @Override
-    public Teste updateTeste(long testeId, Teste updatedTeste) {
+    public TesteDTO updateTeste(long testeId, TesteDTO updatedTesteDTO) {
+//        Optional<Teste> optionalTeste = testeRepository.findById(testeId);
+//        if (optionalTeste.isPresent()) {
+//            Teste existingTeste = optionalTeste.get();
+//            modelMapper.map(updatedTesteDTO, existingTeste);
+//            return modelMapper.map(testeRepository.save(existingTeste), TesteDTO.class);
+//        }
         return null;
     }
 

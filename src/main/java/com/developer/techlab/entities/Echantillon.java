@@ -38,4 +38,8 @@ public class Echantillon {
         this.date_prev = date_prev;
         this.statut = statut;
     }
+
+    public Echantillon(long id) {
+        this.id = id;
+    }
 }
