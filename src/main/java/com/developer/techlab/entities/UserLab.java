@@ -28,8 +28,11 @@ public class UserLab {
 
     @Column(name = "mot_passe")
     private String mot_passe;
+    private boolean deleted;
+
 
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private Role role;
     @ToString.Exclude
     @JsonIgnore

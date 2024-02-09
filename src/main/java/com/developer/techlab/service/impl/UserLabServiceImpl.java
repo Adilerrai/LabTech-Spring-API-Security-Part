@@ -5,9 +5,9 @@ import com.developer.techlab.entities.UserLab;
 import com.developer.techlab.repositories.UserLabRepository;
 import com.developer.techlab.service.UserLabService;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -56,4 +56,42 @@ public class UserLabServiceImpl implements UserLabService {
         }
         return null;
     }
+
+    @Override
+    public UserLabDTO getByEmailInObject(String email)
+    {
+        UserLab user = userLabRepository.findByEmailAndDeletedFalse(email).orElseThrow(() -> new UsernameNotFoundException("User not found with this email : " + email));
+        return modelMapper.map(user, UserLabDTO.class);
+    }
+
+    @Override
+    public void checkExistEmail(UserLabDTO userDto)
+    {
+        if(userDto.getEmail().equals(getByEmail(userDto.getEmail())))
+        {
+        }
+    }
+
+    @Override
+    public void SiNoEqualCheckEmailExist(UserLab userExist, UserLabDTO userDto)
+    {
+        if (!userDto.getEmail().equals(userExist.getEmail()))
+        {
+            checkExistEmail(userDto);
+        }
+    }
+
+    @Override
+    public UserLabDTO loadUserByEmail(String email) {
+        UserLab userLab = userLabRepository.findByEmailAndDeletedFalse(email).orElse(null);
+        return (userLab != null) ? modelMapper.map(userLab, UserLabDTO.class) : null;
+    }
+
+
+    // Define getByEmail method
+    private String getByEmail(String email) {
+        UserLab user = userLabRepository.findByEmailAndDeletedFalse(email).orElse(null);
+        return (user != null) ? user.getEmail() : null;
+    }
+
 }

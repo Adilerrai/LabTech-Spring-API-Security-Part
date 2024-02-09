@@ -16,7 +16,7 @@ public class UserLabDTO {
         private long id;
         private String nom;
         private String email;
-        private String mot_passe;
+        private String password;
         private Role role;
         @ToString.Exclude
         List<Analyse> analyses;
@@ -25,7 +25,7 @@ public class UserLabDTO {
                 this.id = id;
                 this.nom = nom;
                 this.email = email;
-                this.mot_passe = mot_passe;
+                this.password = mot_passe;
                 this.role = role;
         }
 
